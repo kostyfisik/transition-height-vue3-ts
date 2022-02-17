@@ -37,15 +37,14 @@ export default defineComponent({
           { height: '0px', opacity: '0' },
           { height, opacity: '1' },
         ]
-        const options = { duration: 1250, easing: 'ease-in-out', fill: 'forwards' }
+        const options = { duration: 1250, easing: 'ease-in-out' }
 
         const animation = element.animate(keyframes, options)
-        // We would like to set a final height to 'auto' to deal with reactive
-        // content, so we will do it right after launching the animation, as
-        // soon as it will not go live before the end of animation
         animation.onfinish = () => {
-          done()
+          // Set height to 'auto' to keep UI adaptivity
           element.style.height = ''
+          element.style.overflow = ''
+          done()
         }
       },
 
@@ -59,15 +58,14 @@ export default defineComponent({
           { height, opacity: '1' },
           { height: '0px', opacity: '0' },
         ]
-        const options = { duration: 1250, easing: 'ease-in-out', fill: 'forwards' }
+        const options = { duration: 1250, easing: 'ease-in-out' }
 
         const animation = element.animate(keyframes, options)
-        // We need to set a final height to 'auto' and we will do it right after
-        // launching the animation, as soon as it will not go live before the
-        // end of animation
         animation.onfinish = () => {
-          done()
+          // Set height to 'auto' to keep UI adaptivity
           element.style.height = ''
+          element.style.overflow = ''
+          done()
         }
       },
     }
