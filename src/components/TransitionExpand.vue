@@ -37,30 +37,38 @@ export default defineComponent({
           { height: '0px', opacity: '0' },
           { height, opacity: '1' },
         ]
-        const options = { duration: 1250, easing: 'ease-in-out' }
+        const options = { duration: 1250, easing: 'ease-in-out', fill: 'forwards' }
+
+        const animation = element.animate(keyframes, options)
+        // We would like to set a final height to 'auto' to deal with reactive
+        // content, so we will do it right after launching the animation, as
+        // soon as it will not go live before the end of animation
+        animation.onfinish = () => {
+          done()
+          element.style.height = ''
+        }
+      },
+
+      leave(element: Element, done) {
+        const { height } = getComputedStyle(element)
+        element.style.height = height
+        element.style.overflow = 'hidden'
+        console.log('leave', height)
+
+        const keyframes = [
+          { height, opacity: '1' },
+          { height: '0px', opacity: '0' },
+        ]
+        const options = { duration: 1250, easing: 'ease-in-out', fill: 'forwards' }
 
         const animation = element.animate(keyframes, options)
         // We need to set a final height to 'auto' and we will do it right after
         // launching the animation, as soon as it will not go live before the
         // end of animation
-        element.style.height = ''
-        animation.onfinish = done()
-      },
-
-      leave(element: Element) {
-        console.log('leave', element)
-
-        const { height } = getComputedStyle(element);
-        (element as HTMLElement).style.height = height
-
-        // Force repaint to make sure the
-        // animation is triggered correctly.
-        // eslint-disable-next-line no-unused-expressions
-        getComputedStyle(element).height
-
-        requestAnimationFrame(() => {
-          (element as HTMLElement).style.height = '0px'
-        })
+        animation.onfinish = () => {
+          done()
+          element.style.height = ''
+        }
       },
     }
   },
