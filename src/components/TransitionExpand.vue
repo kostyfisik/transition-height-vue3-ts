@@ -16,6 +16,7 @@ export default defineComponent({
   name: 'TransitionExpand',
   setup() {
     const show = ref(false)
+    const duration = 250
     return {
       show,
       enter(element: Element, done) {
@@ -37,7 +38,7 @@ export default defineComponent({
           { height: '0px', opacity: '0' },
           { height, opacity: '1' },
         ]
-        const options = { duration: 1250, easing: 'ease-in-out' }
+        const options = { duration, easing: 'ease-in-out' }
 
         const animation = element.animate(keyframes, options)
         animation.onfinish = () => {
@@ -58,7 +59,7 @@ export default defineComponent({
           { height, opacity: '1' },
           { height: '0px', opacity: '0' },
         ]
-        const options = { duration: 1250, easing: 'ease-in-out' }
+        const options = { duration, easing: 'ease-in-out' }
 
         const animation = element.animate(keyframes, options)
         animation.onfinish = () => {
