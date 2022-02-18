@@ -1,37 +1,3 @@
-<template>
-  <div class="container mx-auto max-w-md p-4">
-    <h1>Transition to height auto with Vue.js</h1>
-    <div>Render speed: {{ fps }} FPS </div>
-    <button
-      class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded mt-4"
-      @click="expanded = !expanded"
-    >
-      {{ expanded ? `Shrink` : `Expand` }}
-    </button>
-
-    <div class="mt-8">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-      sed diam nonumy eirmod tempor invidunt ut labore et dolore.
-    </div>
-    <transition-expand>
-      <div v-if="expanded">
-        Magna aliquyam erat, sed diam voluptua. At vero eos et
-        accusam et justo duo dolores et ea rebum. Stet clita kasd
-        gubergren, no sea takimata sanctus est Lorem ipsum dolor
-        sit amet. Lorem ipsum dolor sit amet, consetetur
-        sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-        ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et
-        ea rebum. Stet clita kasd gubergren, no sea takimata
-        sanctus est Lorem ipsum dolor sit amet.
-      </div>
-    </transition-expand>
-    <div class="mt-8">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-      sed diam nonumy eirmod tempor invidunt ut labore et dolore.
-    </div>
-  </div>
-</template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -63,7 +29,8 @@ function tick() {
 }
 tick()
 
-const expanded = ref(true)
+const expandedAll = ref(false)
+const expandedOne = ref(false)
 
 // export default {
 //   name: `App`,
@@ -78,14 +45,68 @@ const expanded = ref(true)
 // };
 </script>
 
-<style>
-.expand-enter-active,
-.expand-leave-active {
-  transition-property: opacity, height;
-}
+<template>
+  <div class="container mx-auto max-w-md p-4">
+    <h1>Transition to height auto with Vue.js</h1>
+    <div>Estimated render speed: {{ fps }} FPS </div>
+    <br>
+    <button
+      @click="expandedOne = !expandedOne"
+    >
+      {{ expandedOne ? `Shrink 2 elements` : `Expand 2 elements` }}
+    </button>
 
-.expand-enter,
-.expand-leave-to {
-  opacity: 0;
-}
-</style>
+    <button
+      @click="expandedAll = !expandedAll"
+    >
+      {{ expandedAll ? `Shrink 100 elements` : `Expand 100 elements` }}
+    </button>
+
+    <div class="mt-8">
+        Separator text... short element.
+    </div>
+    <transition-expand>
+      <div v-if="expandedOne" style="background-color: rgb(0, 88, 4);">
+        Magna aliquyam erat, sed diam voluptua.
+      </div>
+    </transition-expand>
+    <div class="mt-8">
+        Separator text... long element.
+    </div>
+    <transition-expand>
+      <div v-if="expandedOne" style="background-color: rgb(0, 88, 4);">
+        Magna aliquyam erat, sed diam voluptua. At vero eos et
+        accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor
+        sit amet. Lorem ipsum dolor sit amet, consetetur
+        sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+        ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et
+        ea rebum. Stet clita kasd gubergren, no sea takimata
+        sanctus est Lorem ipsum dolor sit amet.
+      </div>
+    </transition-expand>
+
+    <div v-for="index in 100" :key="index">
+      <div class="mt-8">
+        Separator text...
+      </div>
+      <transition-expand>
+        <div v-if="expandedAll" style="background-color:  rgb(0, 88, 4);">
+          Magna aliquyam erat, sed diam voluptua. At vero eos et
+          accusam et justo duo dolores et ea rebum. Stet clita kasd
+          gubergren, no sea takimata sanctus est Lorem ipsum dolor
+          sit amet. Lorem ipsum dolor sit amet, consetetur
+          sadipscing elitr, sed diam nonumy eirmod tempor invidunt
+          ut labore et dolore magna aliquyam erat, sed diam
+          voluptua. At vero eos et accusam et justo duo dolores et
+          ea rebum. Stet clita kasd gubergren, no sea takimata
+          sanctus est Lorem ipsum dolor sit amet.
+        </div>
+      </transition-expand>
+      <div class="mt-8">
+        Separator text...
+      </div>
+    </div>
+  </div>
+</template>
