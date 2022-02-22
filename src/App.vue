@@ -21,7 +21,9 @@ const duration = ref(250);
 
 <template>
   <div>
-    <h1>Height (auto) transition demo with Vue3, TypeScript, and Web Animation API</h1>
+    <h1>
+      Height (auto) transition demo with Vue3, TypeScript, and Web Animation API
+    </h1>
     <CounterFPS />
 
     <button
@@ -41,6 +43,6 @@ const duration = ref(250);
         <BasicExample :duration="duration" />
       </div>
     </TransitionHeight>
-    <div> Some final text...</div>
+    <div>Some final text...</div>
   </div>
 </template>

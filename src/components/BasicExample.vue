@@ -33,8 +33,8 @@ const expandedPresetHeight = ref(true);
 
     <div class="m-05em">
       Using distinct margin-top for buttons above... shouldn't be a problem for
-      the parent height transition</div
-    >
+      the parent height transition
+    </div>
 
     <h2>Extended style example</h2>
     <button
@@ -58,7 +58,7 @@ const expandedPresetHeight = ref(true);
       </div>
     </TransitionHeight>
 
-    <div class="p-05em"> Height container with hidden overflow. </div>
+    <div class="p-05em">Height container with hidden overflow.</div>
     <TransitionHeight :duration="props.duration">
       <div
         v-if="expandedPresetHeight"
@@ -71,25 +71,25 @@ const expandedPresetHeight = ref(true);
         amet.
       </div>
     </TransitionHeight>
-    <div class="p-05em"> Padding-border-margin container. </div>
+    <div class="p-05em">Padding-border-margin container.</div>
     <TransitionHeight :duration="props.duration">
       <div v-if="expandedPresetHeight" class="container--full-box">
         Using container with padding-border-margin settings
       </div>
     </TransitionHeight>
 
-    <h2>Same visual animation duration </h2>
+    <h2>Same visual animation duration</h2>
 
     <button @click="expandedOne = !expandedOne" class="m-05em">
       {{ expandedOne ? `Shrink 2 elements` : `Expand 2 elements` }} (v-show)
     </button>
-    <div> Short element. </div>
+    <div>Short element.</div>
     <TransitionHeight :duration="props.duration">
       <div v-show="expandedOne" style="background-color: rgb(0, 88, 4)">
         Magna aliquyam erat, sed diam voluptua.
       </div>
     </TransitionHeight>
-    <div> Long element. </div>
+    <div>Long element.</div>
     <TransitionHeight :duration="props.duration">
       <div v-if="expandedOne" style="background-color: rgb(0, 88, 4)">
         Magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo

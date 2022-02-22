@@ -11,7 +11,10 @@ function tick() {
   frame++;
   if (time - startTime > 1000) {
     fps.value = (frame / ((time - startTime) / 1000)).toFixed(1);
-    minFps.value = parseFloat(minFps.value) > parseFloat(fps.value) ? fps.value : minFps.value
+    minFps.value =
+      parseFloat(minFps.value) > parseFloat(fps.value)
+        ? fps.value
+        : minFps.value;
     startTime = time;
     frame = 0;
   }
@@ -21,7 +24,10 @@ tick();
 </script>
 
 <template>
-    <div style="padding: 0.5em;">Estimated render speed: {{ fps }} FPS 
-    <span :style="parseFloat(minFps)<30 ? 'color:red' : ''">
-    (min {{minFps}})</span> </div>
+  <div style="padding: 0.5em">
+    Estimated render speed: {{ fps }} FPS
+    <span :style="parseFloat(minFps) < 30 ? 'color:red' : ''">
+      (min {{ minFps }})</span
+    >
+  </div>
 </template>

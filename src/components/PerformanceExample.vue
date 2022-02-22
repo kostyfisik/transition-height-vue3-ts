@@ -39,8 +39,8 @@ const expandedSeparatorText = ref(false);
         expandedSeparatorText ? `Shrink repeated text` : `Expand repeated text`
       }}
     </button>
-    <div
-      >Using {{ totalCount }} elements
+    <div>
+      Using {{ totalCount }} elements
       <button
         @click="totalCount == 25 ? (totalCount = 100) : (totalCount = 25)"
         class="m-05em"
@@ -80,7 +80,7 @@ const expandedSeparatorText = ref(false);
         </div>
       </TransitionHeight>
       <TransitionHeight :duration="props.duration">
-        <div v-show="expandedSeparatorText"> Separator text... </div>
+        <div v-show="expandedSeparatorText">Separator text...</div>
       </TransitionHeight>
     </div>
   </div>
