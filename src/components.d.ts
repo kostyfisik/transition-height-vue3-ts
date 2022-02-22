@@ -4,10 +4,11 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BasicExample: typeof import('./components/BasicExample.vue')['default']
     Counter: typeof import('./components/Counter.vue')['default']
+    CounterFPS: typeof import('./components/CounterFPS.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     README: typeof import('./components/README.md')['default']
-    TransitionExpand: typeof import('./components/TransitionExpand.vue')['default']
   }
 }
 

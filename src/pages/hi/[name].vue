@@ -26,7 +26,7 @@ watchEffect(() => {
 
     <template v-if="user.otherNames.length">
       <p class="text-sm mt-4">
-        <span class="opacity-75">{{ t('intro.aka') }}:</span>
+        <div class="opacity-75">{{ t('intro.aka') }}:</div>
         <ul>
           <li v-for="otherName in user.otherNames" :key="otherName">
             <router-link :to="`/hi/${otherName}`" replace>
