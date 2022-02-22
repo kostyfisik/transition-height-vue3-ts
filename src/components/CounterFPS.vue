@@ -21,5 +21,7 @@ tick();
 </script>
 
 <template>
-    <div style="padding: 0.5em;">Estimated render speed: {{ fps }} FPS (min {{minFps}}) </div>
+    <div style="padding: 0.5em;">Estimated render speed: {{ fps }} FPS 
+    <span :style="parseFloat(minFps)<30 ? 'color:red' : ''">
+    (min {{minFps}})</span> </div>
 </template>

@@ -7,11 +7,11 @@ import TransitionHeight from "../TransitionHeight.vue";
 // you can use this to manipulate the document head in any components,
 // they will be rendered correctly in the html results with vite-ssg
 useHead({
-  title: "Height (auto) transition example with Vue 3",
+  title: "Height (auto) transition demo with Vue3",
   meta: [
     {
       name: "description",
-      content: "Height (auto) transition example with Vue 3",
+      content: "Height (auto) transition demo with Vue3",
     },
   ],
 });
@@ -21,7 +21,7 @@ const duration = ref(250);
 
 <template>
   <div>
-    <h1>Transition to height auto with Vue.js</h1>
+    <h1>Height (auto) transition demo with Vue3, TypeScript, and Web Animation API</h1>
     <CounterFPS />
 
     <button

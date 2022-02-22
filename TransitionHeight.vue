@@ -68,10 +68,10 @@ function prepareElement(element: HTMLElement, initialStyle: initialStyle) {
 
 function animateTransition(
   element: HTMLElement,
+  initialStyle: initialStyle,
   done: () => void,
   keyframes: Keyframe[] | PropertyIndexedKeyframes | null,
-  options?: number | KeyframeAnimationOptions,
-  initialStyle: initialStyle
+  options?: number | KeyframeAnimationOptions
 ) {
   const animation = element.animate(keyframes, options);
   // Set height to 'auto' to restore it after animation
@@ -112,8 +112,8 @@ function enterTransition(element: Element, done: () => void) {
   const initialStyle = getElementStyle(HTMLElement);
   const height = prepareElement(HTMLElement, initialStyle);
   const keyframes = getEnterKeyframes(height, initialStyle);
-  const optionsEnter = { duration: props.duration, easing: "ease-in-out" };
-  animateTransition(HTMLElement, done, keyframes, optionsEnter, initialStyle);
+  const options = { duration: props.duration, easing: props.easingEnter };
+  animateTransition(HTMLElement, initialStyle, done, keyframes, options);
 }
 
 function leaveTransition(element: Element, done: () => void) {
@@ -124,9 +124,9 @@ function leaveTransition(element: Element, done: () => void) {
   HTMLElement.style.overflow = "hidden";
 
   const keyframes = getEnterKeyframes(height, initialStyle).reverse();
-  const options = { duration: props.duration, easing: "ease-in-out" };
+  const options = { duration: props.duration, easing: props.easingLeave };
 
-  animateTransition(HTMLElement, done, keyframes, options, initialStyle);
+  animateTransition(HTMLElement, initialStyle, done, keyframes, options);
 }
 </script>
 
