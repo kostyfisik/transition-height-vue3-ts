@@ -18,6 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const closed = "0px";
+
 interface initialStyle {
   height: string;
   width: string;

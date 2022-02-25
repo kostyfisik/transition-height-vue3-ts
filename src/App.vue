@@ -24,6 +24,7 @@ const duration = ref(250);
     <h1>
       Height (auto) transition demo with Vue3, TypeScript, and Web Animation API
     </h1>
+    <a href="https://github.com/kostyfisik/transition-height-vue3-ts/blob/main/TransitionHeight.vue">GitHub</a>
     <CounterFPS />
 
     <button
