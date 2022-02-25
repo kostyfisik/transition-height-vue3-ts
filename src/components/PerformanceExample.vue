@@ -58,7 +58,7 @@ function toggleWithTimeout() {
     <div>
       Using {{ totalCount }} elements
       <button
-        @click="totalCount == 25 ? (totalCount = 100) : (totalCount = 25)"
+        @click="totalCount === 25 ? (totalCount = 100) : (totalCount = 25)"
         class="m-05em"
       >
         Toggle
@@ -67,15 +67,15 @@ function toggleWithTimeout() {
     <div>
       On my laptop the combo of short animation time (250ms), expanded 'Lorem
       impsum...' text, and expansion of repeated text for 100 elements sometimes
-      skips animation completly :( However, height animation of 100 elements is
+      skips animation completely :( However, height animation of 100 elements is
       a bad idea, as soon as the position of the last element is effected by
-      contiously changing height of previous 99 elements. 
-      
+      contiously changing height of previous 99 elements.
+
       <p>However, shrinking of the same elements seems to work fine... Moreover,
-      if you wait a while after pressing a toggle button and before releasing th
-      button, than it works fine too. But if you add a delay programmatically
-      (so added @click launches setTimeout(..., 300) to trigger visibility), than it
-      always skips animation on expansion.  Finially, this is mostly the Chromium
+      if you wait a while after pressing a toggle button and before releasing the
+      button, then it works fine too. But if you add a delay programmatically
+      (so added @click launches setTimeout(..., 300) to trigger visibility), then it
+      always skips animation on expansion.  Finally, this is mostly the Chromium
       98 64-bit (Linux) browser problem, Firefox 97 works fine in most
       cases.</p>
     </div>

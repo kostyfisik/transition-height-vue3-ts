@@ -144,6 +144,6 @@ const expandedPresetHeight = ref(true);
 }
 .pl-05em>div,
 .pl-05em>h2 {
-  padding: 0em 0em 0em 0.5em;
+  padding: 0 0 0 0.5em;
 }
 </style>

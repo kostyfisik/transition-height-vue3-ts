@@ -24,14 +24,14 @@ const duration = ref(250);
     <h1>
       Height (auto) transition demo with Vue3, TypeScript, and Web Animation API
     </h1>
-    <a href="https://github.com/kostyfisik/transition-height-vue3-ts/blob/main/TransitionHeight.vue">GitHub</a>
+    The code for this reusable transition is available at <a href="https://github.com/kostyfisik/transition-height-vue3-ts/blob/main/TransitionHeight.vue">GitHub</a>
     <CounterFPS />
 
     <button
-      @click="duration == 250 ? (duration = 1000) : (duration = 250)"
-      style="width: 10em; padding: 0.5em; margin: 0em 1em 1em 0em"
+      @click="duration === 250 ? (duration = 1000) : (duration = 250)"
+      style="width: 10em; padding: 0.5em; margin: 0 1em 1em 0"
     >
-      {{ duration == 250 ? `Increase` : `Decrease` }} animation duration
+      {{ duration === 250 ? `Increase` : `Decrease` }} animation duration
     </button>
     Current = {{ duration }} ms
     <br />
