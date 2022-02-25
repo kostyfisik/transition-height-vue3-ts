@@ -15,10 +15,15 @@ const totalCount = ref(25);
 
 const expandedAll = ref(false);
 const expandedSeparatorText = ref(false);
+function toggleWithTimeout() {
+  setTimeout(() => {
+    expandedSeparatorText.value = !expandedSeparatorText.value;
+  }, 300);
+}
 </script>
 
 <template>
-  <div style="background-color: #2f4258">
+  <div style="background-color: #748292">
     <h2>Check animation performance</h2>
     <CounterFPS style="background-color: #263546" />
     <button @click="expandedAll = !expandedAll" class="m-05em">
@@ -39,6 +44,17 @@ const expandedSeparatorText = ref(false);
         expandedSeparatorText ? `Shrink repeated text` : `Expand repeated text`
       }}
     </button>
+    <button
+      @click="toggleWithTimeout"
+      class="m-05em"
+      style="margin: 1em 1em 1em 1em; padding: 0.5em"
+    >
+      {{
+        expandedSeparatorText
+          ? `Shrink repeated text (with delay)`
+          : `Expand repeated text (with delay)`
+      }}
+    </button>
     <div>
       Using {{ totalCount }} elements
       <button
@@ -49,13 +65,19 @@ const expandedSeparatorText = ref(false);
       </button>
     </div>
     <div>
-      On my laptop the combo of short animation time (250ms), expended 'Lorem
-      impsum...' text, and expansion of repeated text sometimes skips animation
-      completly :( However, height animation of {{ totalCount }} elements is a
-      bad idea, as soon as the position of the last element is effected by
-      contiously changing height of previous {{ totalCount - 1 }} elements.
-      However, shrinking of the same elements seems to work fine... Finially,
-      this is only the Chrome browser problem, Firefox works fine in any case.
+      On my laptop the combo of short animation time (250ms), expanded 'Lorem
+      impsum...' text, and expansion of repeated text for 100 elements sometimes
+      skips animation completly :( However, height animation of 100 elements is
+      a bad idea, as soon as the position of the last element is effected by
+      contiously changing height of previous 99 elements. 
+      
+      <p>However, shrinking of the same elements seems to work fine... Moreover,
+      if you wait a while after pressing a toggle button and before releasing th
+      button, than it works fine too. But if you add a delay programmatically
+      (so added @click launches setTimeout(..., 300) to trigger visibility), than it
+      always skips animation on expansion.  Finially, this is mostly the Chromium
+      98 64-bit (Linux) browser problem, Firefox 97 works fine in most
+      cases.</p>
     </div>
     <div v-for="index in totalCount" :key="index">
       <TransitionHeight :duration="props.duration">
@@ -80,7 +102,7 @@ const expandedSeparatorText = ref(false);
         </div>
       </TransitionHeight>
       <TransitionHeight :duration="props.duration">
-        <div v-show="expandedSeparatorText">Separator text...</div>
+        <div v-if="expandedSeparatorText">Separator text... (v-if)</div>
       </TransitionHeight>
     </div>
   </div>

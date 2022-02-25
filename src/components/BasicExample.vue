@@ -15,7 +15,7 @@ const expandedPresetHeight = ref(true);
 </script>
 
 <template>
-  <div style="background-color: #2f4258">
+  <div style="background-color: #2f4258" class="pl-05em">
     <button
       @click="expandedPresetHeight = !expandedPresetHeight"
       class="m-05em"
@@ -45,7 +45,7 @@ const expandedPresetHeight = ref(true);
       {{ expandedPresetHeight ? `Shrink with classes` : `Expand with classes` }}
     </button>
 
-    <div class="p-05em">
+    <div class="pl-05em">
       <span style="font-weight: bolder">
         This transition uses overflow:hidden during the animation.
       </span>
@@ -53,17 +53,17 @@ const expandedPresetHeight = ref(true);
       following div in action.
     </div>
     <TransitionHeight :duration="props.duration">
-      <div v-if="expandedPresetHeight" class="container--height">
-        Using height container
-      </div>
+      <p v-if="expandedPresetHeight" class="container--height">
+        Using height container in &lt;p&gt; tag
+      </p>
     </TransitionHeight>
 
-    <div class="p-05em">Height container with hidden overflow.</div>
+    <div>&lt;div&gt; container with given height and hidden overflow.</div>
     <TransitionHeight :duration="props.duration">
       <div
         v-if="expandedPresetHeight"
         class="container--height"
-        style="overflow: hidden; height: 2em"
+        style="overflow: hidden; height: 2.2em"
       >
         Text overflow when using height container. Magna aliquyam erat, sed diam
         voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
@@ -71,9 +71,9 @@ const expandedPresetHeight = ref(true);
         amet.
       </div>
     </TransitionHeight>
-    <div class="p-05em">Padding-border-margin container.</div>
+    <div>Padding-border-margin &lt;div&gt; container.</div>
     <TransitionHeight :duration="props.duration">
-      <div v-if="expandedPresetHeight" class="container--full-box">
+      <div v-show="expandedPresetHeight" class="container--full-box">
         Using container with padding-border-margin settings
       </div>
     </TransitionHeight>
@@ -83,6 +83,14 @@ const expandedPresetHeight = ref(true);
     <button @click="expandedOne = !expandedOne" class="m-05em">
       {{ expandedOne ? `Shrink 2 elements` : `Expand 2 elements` }} (v-show)
     </button>
+    <div>Note, this transition is only for 'display:block' element. Short span element with jumping tail...</div>
+    before span
+    <TransitionHeight :duration="props.duration">
+      <span v-show="expandedOne" style="background-color: rgb(0, 88, 4)">
+        Magna aliquyam erat, sed diam voluptua.
+      </span>
+    </TransitionHeight>
+    after span
     <div>Short element.</div>
     <TransitionHeight :duration="props.duration">
       <div v-show="expandedOne" style="background-color: rgb(0, 88, 4)">
@@ -127,14 +135,15 @@ const expandedPresetHeight = ref(true);
   content: "::before selector";
   background-color: rgba(216, 214, 215, 0.2);
   border: 3px solid rebeccapurple;
-  padding-top: 1.65em;
+  padding-top: 2.65em;
   /* padding-left: 2em; */
 }
 
 .m-05em {
   margin: 0.5em 0.5em 0.5em 0.5em;
 }
-.p-05em {
-  padding: 0.5em 0.5em 0.5em 0.5em;
+.pl-05em>div,
+.pl-05em>h2 {
+  padding: 0em 0em 0em 0.5em;
 }
 </style>

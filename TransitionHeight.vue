@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// import { nextTick } from "vue";
 interface Props {
   duration?: number;
   easingEnter?: string;
@@ -25,8 +26,8 @@ interface initialStyle {
   overflow: string;
   paddingTop: string;
   paddingBottom: string;
-  borderTop: string;
-  borderBottom: string;
+  borderTopWidth: string;
+  borderBottomWidth: string;
   marginTop: string;
   marginBottom: string;
 }
@@ -40,15 +41,14 @@ function getElementStyle(element: HTMLElement) {
     overflow: element.style.overflow,
     paddingTop: element.style.paddingTop,
     paddingBottom: element.style.paddingBottom,
-    borderTop: element.style.borderTop,
-    borderBottom: element.style.borderBottom,
+    borderTopWidth: element.style.borderTopWidth,
+    borderBottomWidth: element.style.borderBottomWidth,
     marginTop: element.style.marginTop,
     marginBottom: element.style.marginBottom,
   };
 }
 
 function prepareElement(element: HTMLElement, initialStyle: initialStyle) {
-  //TODO check elements with some given height, and with ::before or ::after
   const { width } = getComputedStyle(element);
   element.style.width = width;
   element.style.position = "absolute";
@@ -89,8 +89,8 @@ function getEnterKeyframes(height: string, initialStyle: initialStyle) {
       opacity: props.opacityClosed,
       paddingTop: closed,
       paddingBottom: closed,
-      borderTop: closed,
-      borderBottom: closed,
+      borderTopWidth: closed,
+      borderBottomWidth: closed,
       marginTop: closed,
       marginBottom: closed,
     },
@@ -99,8 +99,8 @@ function getEnterKeyframes(height: string, initialStyle: initialStyle) {
       opacity: props.opacityOpened,
       paddingTop: initialStyle.paddingTop,
       paddingBottom: initialStyle.paddingBottom,
-      borderTop: initialStyle.borderTop,
-      borderBottom: initialStyle.borderBottom,
+      borderTopWidth: initialStyle.borderTopWidth,
+      borderBottomWidth: initialStyle.borderBottomWidth,
       marginTop: initialStyle.marginTop,
       marginBottom: initialStyle.marginBottom,
     },
@@ -135,9 +135,3 @@ function leaveTransition(element: Element, done: () => void) {
     <slot />
   </Transition>
 </template>
-
-<style scoped>
-* {
-  will-change: height;
-}
-</style>
